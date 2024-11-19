@@ -4,19 +4,36 @@ import print_table
 import historic
 import detection_cycle
 
-col= int(input("how many column do you want to have for the game? "))
-row= int(input("how many line do you want to have for the game? "))
-table=generator_table.generate(col,row,[0,1])
-ancien_table_alive_cells =[]
-ancien_table_alive_cells =historic.ancien_table(ancien_table_alive_cells,table)
-while True:
-    print(print_table.print(table))
-    debut_cycle=detection_cycle.detection(historic.list_alive_cells(table),ancien_table_alive_cells)
-    if debut_cycle!=-1:
-        print("un cycle a été detecté. il a commencer a l'itération :",debut_cycle)
-        break
-    enter = input("press q to quit or enter to continue :")
-    if enter=='q':
-        break
-    table = update_table.update(table)
-    ancien_table_alive_cells =historic.ancien_table(ancien_table_alive_cells,table)
+class Game:
+    def __init__(self):
+        self.col = int(input("How many columns do you want to have for the game? "))
+        self.row = int(input("How many rows do you want to have for the game? "))
+        self.table = generator_table.GeneratorTable.generate(self.col, self.row, [0, 1])
+        self.ancien_table_alive_cells = []
+        self.historic = historic.Historic()
+        self.detection = detection_cycle.DetectionCycle()
+
+    def start_game(self):
+        self.ancien_table_alive_cells = self.historic.ancien_table(self.ancien_table_alive_cells, self.table)
+        
+        while True:
+            print(print_table.PrintTable.print(self.table))
+            debut_cycle = self.detection.detection(self.historic.list_alive_cells(self.table), self.ancien_table_alive_cells)
+            
+            if debut_cycle != -1:
+                print("A cycle has been detected. It started at iteration:", debut_cycle)
+                break
+            
+            enter = input("Press q to quit or enter to continue: ")
+            if enter == 'q':
+                break
+            #print("vous êtes a l'itération :",len(self.historic.ancien_table))
+            self.table = update_table.UpdateTable.update(self.table)
+            self.ancien_table_alive_cells = self.historic.ancien_table(self.ancien_table_alive_cells, self.table)
+
+def run_game():
+    game = Game()
+    game.start_game()
+
+if __name__ == "__main__":
+    run_game() 
