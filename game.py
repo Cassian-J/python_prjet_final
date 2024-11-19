@@ -8,6 +8,7 @@ col= int(input("how many column do you want to have for the game? "))
 row= int(input("how many line do you want to have for the game? "))
 table=generator_table.generate(col,row,[0,1])
 ancien_table_alive_cells =[]
+ancien_table_alive_cells =historic.ancien_table(ancien_table_alive_cells,table)
 while True:
     print(print_table.print(table))
     debut_cycle=detection_cycle.detection(historic.list_alive_cells(table),ancien_table_alive_cells)
@@ -17,5 +18,5 @@ while True:
     enter = input("press q to quit or enter to continue :")
     if enter=='q':
         break
-    ancien_table_alive_cells =historic.ancien_table(ancien_table_alive_cells,table)
     table = update_table.update(table)
+    ancien_table_alive_cells =historic.ancien_table(ancien_table_alive_cells,table)
