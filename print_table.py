@@ -3,7 +3,7 @@ def print(table):
     printing="|---"*len(table[0])+"|\n"
     for column in range(len(table)):
         printing+="|"
-        for line in range(len(table[i])):
+        for line in range(len(table[column])):
             if table[column][line]==0:
                 printing+="\033[40m   \033[0m|"
             elif table[column][line]==1:
