@@ -12,5 +12,6 @@ class Historic:
             for j in range(len(table[i])):
                 if table[i][j] == 1:
                     alive_cells.append((i, j))
+        alive_cells.append((len(table),len(table[i])))
         return alive_cells
 

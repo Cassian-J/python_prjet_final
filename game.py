@@ -24,7 +24,7 @@ class Game:
             if game==None:
                  self.end_game()
                  breakpoint
-            print(game[-1])
+            self.col, self.row=game[-1][-1][0], game[-1][-1][-1]
             self.table=generator_table.GeneratorTable.generate_Table_game(generator_table.GeneratorTable.generate(self.col, self.row, [0]),game[-1])
         if new_game==1:
             self.saveGame.saveGameTable(self.file,self.historic.ancien_table([],self.table))
@@ -32,9 +32,8 @@ class Game:
             if game==None:
                  self.end_game()
                  breakpoint
-            print(game[-1])
         while True:
-            os.system('cls' if os.name == 'nt' else 'clear')
+            #os.system('cls' if os.name == 'nt' else 'clear')
             print("Ca fait",len(self.saveGame.readGameTable(self.file)),"année que la population vit")
             print(print_table.PrintTable.print(self.table))
             debut_cycle = self.detection.detection(self.saveGame.readGameTable(self.file))
