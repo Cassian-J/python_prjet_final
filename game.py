@@ -8,8 +8,8 @@ import os
 
 class Game:
     def __init__(self):
-        self.col = int(input("How many columns do you want to have for the game? "))
-        self.row = int(input("How many rows do you want to have for the game? "))
+        self.col = int(input("combien de colonne voulez-vous dans cette partie ? "))
+        self.row = int(input("combien de ligne voulez-vous dans cette partie ? "))
         self.table = generator_table.GeneratorTable.generate(self.col, self.row, [0, 1])
         self.ancien_table_alive_cells = []
         self.historic = historic.Historic()
@@ -18,7 +18,7 @@ class Game:
         self.file="./game.txt"
 
     def start_game(self):
-        new_game = int(input("[0] continuer la partie\n[1] commencer une nouvelle partie\n"))
+        new_game = int(input("[0] continuer la partie d'avant\n[1] commencer une nouvelle partie\n"))
         if new_game==0:
             game=self.saveGame.readGameTable(self.file)
             if game==None:
@@ -34,15 +34,15 @@ class Game:
                  breakpoint
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("Ca fait",len(self.saveGame.readGameTable(self.file)),"année que la population vit")
+            print("Ça fait",len(self.saveGame.readGameTable(self.file)),"année que la population vit")
             print(print_table.PrintTable.print(self.table))
             debut_cycle = self.detection.detection(self.saveGame.readGameTable(self.file))
             if debut_cycle != -1:
-                print("A cycle has been detected. It started at iteration:", debut_cycle)
+                print("Un cycle a été détecté. Il a commencé à la",debut_cycle+"e année")
                 self.end_game()
                 break
             
-            enter = input("Press q to quit or enter to continue: ")
+            enter = input("Appuyez sur q pour quitter ou entrer pour continuer : ")
             if enter == 'q':
                 self.end_game()
                 break
@@ -51,4 +51,4 @@ class Game:
             self.saveGame.saveGameTable(self.file,self.historic.ancien_table(ancien_table,self.table))
     
     def end_game(self):
-        print("le partie est terminer")
+        print("la partie est terminée")
