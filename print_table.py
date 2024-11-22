@@ -1,7 +1,7 @@
 
 class Print_Table:
     @staticmethod
-    def print(table):
+    def print_game(table):
         printing = ""
         for row in range(len(table)):
             for col in range(len(table[row])):

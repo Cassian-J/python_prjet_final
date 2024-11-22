@@ -64,27 +64,25 @@ class Game:
 
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("Ça fait", len(self.save_game.read_game_table(self.file)), "année que la population vit\n")
-            print(print_table.Print_Table.print(self.table))
+            print("Ça fait", len(self.save_game.read_game_table(self.file)), "année que la population vit")
+            print(print_table.Print_Table.print_game(self.table))
             debut_cycle = self.detection.detection(self.save_game.read_game_table(self.file))
             if debut_cycle != -1:
                 os.system('cls' if os.name == 'nt' else 'clear')
-                print("Ça fait", len(self.save_game.read_game_table(self.file)), "année que la population vit\n",print_table.Print_Table.print(self.table))
+                print("Ça fait", len(self.save_game.read_game_table(self.file)), "année que la population vit")
+                print(print_table.Print_Table.print(self.table))
                 print("Un cycle a été détecté. Il a commencé à la", debut_cycle, "année")
                 if self.automatic:
                     self.automatic = False
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    print("Ça fait", len(self.save_game.read_game_table(self.file)), "année que la population vit")
-                    print(print_table.Print_Table.print(self.table))
 
             if not self.automatic:
                 while True:
                     try:
                         print("[q] quittez\n[a] continuez automatiquement\n[c] continuez")
                         enter = key_controle.Key_Controle.get_key().lower()
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        print("Ça fait", len(self.save_game.read_game_table(self.file)), "année que la population vit\n",print_table.Print_Table.print(self.table))
                         if enter not in ['a', 'q', 'c']:
+                            print("Ça fait", len(self.save_game.read_game_table(self.file)), "année que la population vit")
+                            print(print_table.Print_Table.print_game(self.table))
                             print("Choix invalide!")
                         else:
                             break
@@ -98,7 +96,7 @@ class Game:
                     self.end_game()
                     break
             else:
-                print("Tapez sur une touche pour arrété le mode automatique")
+                print("Tapez sur [Entrée] pour arrété le mode automatique")
                 time.sleep(0.25)
                 if key_controle.Key_Controle.check_keypress():
                     self.automatic = False

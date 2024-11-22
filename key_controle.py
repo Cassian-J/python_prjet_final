@@ -4,10 +4,10 @@ import termios
 import select
 
 class Key_Controle:
-    def check_keypress(self):
+    def check_keypress():
         return select.select([sys.stdin], [], [], 0)[0] != []
 
-    def get_key(self):
+    def get_key():
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
         try:
