@@ -14,8 +14,8 @@ class Save_Game:
                 table = json.load(file)
                 return table
         except FileNotFoundError:
-                self.saveGameTable(fileName,"[]")
-                self.readGameTable(fileName)
+                self.save_game_table(fileName,"[]")
+                self.read_game_table(fileName)
         except Exception as error:
             print(f"Une erreur s'est produite : {error}")
             return None
