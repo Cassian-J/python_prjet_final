@@ -98,7 +98,7 @@ class Game:
                     self.end_game()
                     break
             else:
-                print("Faites entrée pour arrété le mode automatique")
+                print("Tapez sur une touche pour arrété le mode automatique")
                 time.sleep(0.25)
                 if key_controle.Key_Controle.check_keypress():
                     self.automatic = False
