@@ -5,6 +5,7 @@ import historic
 import detection_cycle
 import save_game
 import os
+import time
 
 class Game:
     def __init__(self):
@@ -25,7 +26,7 @@ class Game:
         self.historic = historic.Historic()
         self.detection = detection_cycle.Detection_Cycle()
         self.save_game = save_game.Save_Game()
-        self.file="./game.txt"
+        self.file="./save.txt"
 
     def start_game(self):
         while True:
@@ -59,8 +60,6 @@ class Game:
             debut_cycle = self.detection.detection(self.save_game.read_game_table(self.file))
             if debut_cycle != -1:
                 print("Un cycle a été détecté. Il a commencé à la",debut_cycle,"année")
-                self.end_game()
-                break
             
             enter = input("Appuyez sur q pour quitter ou entrer pour continuer : ")
             if enter == 'q':
@@ -71,4 +70,9 @@ class Game:
             self.save_game.save_game_table(self.file,self.historic.old_table(old_table,self.table))
     
     def end_game(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("la partie est terminée")
+        time.sleep(2.5)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        return
+
