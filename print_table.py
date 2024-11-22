@@ -1,5 +1,5 @@
 
-class PrintTable:
+class Print_Table:
     @staticmethod
     def print(table):
         printing = ""

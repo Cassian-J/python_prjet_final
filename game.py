@@ -20,11 +20,11 @@ class Game:
             except ValueError:
                 print("Veuillez entrer un nombre entier pour les colonnes.")
         self.row=self.col
-        self.table = generator_table.GeneratorTable.generate(self.col, self.row, [0, 1])
+        self.table = generator_table.Generator_Table.generate(self.col, self.row, [0, 1])
         self.old_table_alive_cells = []
         self.historic = historic.Historic()
-        self.detection = detection_cycle.DetectionCycle()
-        self.save_game = save_game.SaveGame()
+        self.detection = detection_cycle.Detection_Cycle()
+        self.save_game = save_game.Save_Game()
         self.file="./game.txt"
 
     def start_game(self):
@@ -40,23 +40,23 @@ class Game:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print("Veuillez entrer 1 ou 0.")
         if new_game==0:
-            game=self.save_game.readGameTable(self.file)
+            game=self.save_game.read_game_table(self.file)
             if game==None:
                  self.end_game()
                  breakpoint
             self.col, self.row=game[-1][-1][0], game[-1][-1][-1]
-            self.table=generator_table.GeneratorTable.generate_Table_game(generator_table.GeneratorTable.generate(self.col, self.row, [0]),game[-1])
+            self.table=generator_table.Generator_Table.generate_Table_game(generator_table.Generator_Table.generate(self.col, self.row, [0]),game[-1])
         else:
-            self.save_game.saveGameTable(self.file,self.historic.old_table([],self.table))
-            game=self.save_game.readGameTable(self.file)
+            self.save_game.save_game_table(self.file,self.historic.old_table([],self.table))
+            game=self.save_game.read_game_table(self.file)
             if game==None:
                  self.end_game()
                  breakpoint
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("Ça fait",len(self.saveGame.readGameTable(self.file)),"année que la population vit")
-            print(print_table.PrintTable.print(self.table))
-            debut_cycle = self.detection.detection(self.save_game.readGameTable(self.file))
+            print("Ça fait",len(self.save_game.read_game_table(self.file)),"année que la population vit")
+            print(print_table.Print_Table.print(self.table))
+            debut_cycle = self.detection.detection(self.save_game.read_game_table(self.file))
             if debut_cycle != -1:
                 print("Un cycle a été détecté. Il a commencé à la",debut_cycle,"année")
                 self.end_game()
@@ -66,9 +66,9 @@ class Game:
             if enter == 'q':
                 self.end_game()
                 break
-            self.table = update_table.UpdateTable.update(self.table)
-            old_table=self.save_game.readGameTable(self.file)
-            self.save_game.saveGameTable(self.file,self.historic.old_table(old_table,self.table))
+            self.table = update_table.Update_Table.update(self.table)
+            old_table=self.save_game.read_game_table(self.file)
+            self.save_game.save_game_table(self.file,self.historic.old_table(old_table,self.table))
     
     def end_game(self):
         print("la partie est terminée")

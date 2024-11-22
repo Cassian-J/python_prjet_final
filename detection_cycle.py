@@ -1,4 +1,4 @@
-class DetectionCycle:
+class Detection_Cycle:
     @staticmethod
     def detection(historic_table):
         if historic_table != []:
