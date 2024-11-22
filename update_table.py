@@ -2,11 +2,11 @@ import generator_table
 
 class UpdateTable:
     @staticmethod
-    def update(ancien_table):
-        new_table = generator_table.GeneratorTable.generate(len(ancien_table[0]), len(ancien_table), [0])
-        for i in range(len(ancien_table)):
-            for j in range(len(ancien_table[i])):
-                new_table[i][j] = UpdateTable.check_neighbors_condition(ancien_table, i, j)
+    def update(old_table):
+        new_table = generator_table.GeneratorTable.generate(len(old_table[0]), len(old_table), [0])
+        for row in range(len(old_table)):
+            for col in range(len(old_table[row])):
+                new_table[row][col] = UpdateTable.check_neighbors_condition(old_table, row, col)
         return new_table
 
     @staticmethod

@@ -8,27 +8,47 @@ import os
 
 class Game:
     def __init__(self):
-        self.col = int(input("combien de colonne voulez-vous dans cette partie ? "))
-        self.row = int(input("combien de ligne voulez-vous dans cette partie ? "))
+        os.system('cls' if os.name == 'nt' else 'clear')
+        while True:
+            try:
+                self.col = int(input("Combien de colonnes et lignes voulez-vous dans cette partie ? (n x n)\n"))
+                os.system('cls' if os.name == 'nt' else 'clear')
+                if self.col <= 0:
+                    print("Le nombre de colonnes doit être un entier positif.")
+                else:
+                    break
+            except ValueError:
+                print("Veuillez entrer un nombre entier pour les colonnes.")
+        self.row=self.col
         self.table = generator_table.GeneratorTable.generate(self.col, self.row, [0, 1])
-        self.ancien_table_alive_cells = []
+        self.old_table_alive_cells = []
         self.historic = historic.Historic()
         self.detection = detection_cycle.DetectionCycle()
-        self.saveGame = save_game.SaveGame()
+        self.save_game = save_game.SaveGame()
         self.file="./game.txt"
 
     def start_game(self):
-        new_game = int(input("[0] continuer la partie d'avant\n[1] commencer une nouvelle partie\n"))
+        while True:
+            try:
+                new_game = int(input("[0] continuer la partie d'avant\n[1] commencer une nouvelle partie\n"))
+                os.system('cls' if os.name == 'nt' else 'clear')
+                if new_game != 0 and new_game!= 1:
+                    print("Le nombre choisi doit etre 0 ou 1.")
+                else:
+                    break
+            except ValueError:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print("Veuillez entrer 1 ou 0.")
         if new_game==0:
-            game=self.saveGame.readGameTable(self.file)
+            game=self.save_game.readGameTable(self.file)
             if game==None:
                  self.end_game()
                  breakpoint
             self.col, self.row=game[-1][-1][0], game[-1][-1][-1]
             self.table=generator_table.GeneratorTable.generate_Table_game(generator_table.GeneratorTable.generate(self.col, self.row, [0]),game[-1])
-        if new_game==1:
-            self.saveGame.saveGameTable(self.file,self.historic.ancien_table([],self.table))
-            game=self.saveGame.readGameTable(self.file)
+        else:
+            self.save_game.saveGameTable(self.file,self.historic.old_table([],self.table))
+            game=self.save_game.readGameTable(self.file)
             if game==None:
                  self.end_game()
                  breakpoint
@@ -36,9 +56,9 @@ class Game:
             os.system('cls' if os.name == 'nt' else 'clear')
             print("Ça fait",len(self.saveGame.readGameTable(self.file)),"année que la population vit")
             print(print_table.PrintTable.print(self.table))
-            debut_cycle = self.detection.detection(self.saveGame.readGameTable(self.file))
+            debut_cycle = self.detection.detection(self.save_game.readGameTable(self.file))
             if debut_cycle != -1:
-                print("Un cycle a été détecté. Il a commencé à la",debut_cycle+"e année")
+                print("Un cycle a été détecté. Il a commencé à la",debut_cycle,"année")
                 self.end_game()
                 break
             
@@ -47,8 +67,8 @@ class Game:
                 self.end_game()
                 break
             self.table = update_table.UpdateTable.update(self.table)
-            ancien_table=self.saveGame.readGameTable(self.file)
-            self.saveGame.saveGameTable(self.file,self.historic.ancien_table(ancien_table,self.table))
+            old_table=self.save_game.readGameTable(self.file)
+            self.save_game.saveGameTable(self.file,self.historic.old_table(old_table,self.table))
     
     def end_game(self):
         print("la partie est terminée")

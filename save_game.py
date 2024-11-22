@@ -5,8 +5,8 @@ class SaveGame:
         try:
             with open(fileName, 'w') as file:
                 json.dump(table, file)
-        except Exception as e:
-            print(f"Une erreur s'est produite : {e}")
+        except Exception as error:
+            print(f"Une erreur s'est produite : {error}")
 
     def readGameTable(self,fileName):
         try:
@@ -16,7 +16,7 @@ class SaveGame:
         except FileNotFoundError:
                 self.saveGameTable(fileName,"[]")
                 self.readGameTable(fileName)
-        except Exception as e:
-            print(f"Une erreur s'est produite : {e}")
+        except Exception as error:
+            print(f"Une erreur s'est produite : {error}")
             return None
     
