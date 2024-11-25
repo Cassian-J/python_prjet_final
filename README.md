@@ -180,12 +180,12 @@ Après une génération :
 - La progression du jeu est automatiquement enregistrée dans le fichier save.txt.
 - La grille, l'historique et d'autres états du jeu peuvent être restaurés en sélectionnant 0 lors du démarrage du jeu.
 - La sauvegarde est stockée dans le fichier save.txt de la manière suivante :
-        - La sauvegarde est une liste de tables contenant des tuples représentant les positions des cellules vivantes (lignes, colonnes), le dernier tuple représentant la taille de la grille sauvegardée lorsqu'un nouveau jeu est créé (nombre de lignes, nombre de colonnes).
-        - Exemple :
-            ```
-            [[[1,1],[3,3]]] <- ce que nous voyons
-            [[[position de la cellule vivante, position de la cellule vivante],[nombre de lignes, nombre de colonnes]]] <- ce que c'est
-            ```
+    - La sauvegarde est une liste de tables contenant des tuples représentant les positions des cellules vivantes (lignes, colonnes), le dernier tuple représentant la taille de la grille sauvegardée lorsqu'un nouveau jeu est créé (nombre de lignes, nombre de colonnes).
+    - Exemple :
+        ```
+        [[[1,1],[3,3]]] <- ce que nous voyons
+        [[[position de la cellule vivante, position de la cellule vivante],[nombre de lignes, nombre de colonnes]]] <- ce que c'est
+        ```
 
 ## Dépendances
 Aucune dépendance externe n'est requise.
