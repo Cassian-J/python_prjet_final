@@ -92,3 +92,102 @@ After One Generation:
 No external dependencies are required.
 
 Enjoy playing Conway's Game of Life!
+
+
+# Jeu de la Vie de Conway - Implémentation Interactive en Python
+## Description
+Il s'agit d'une implémentation interactive du Jeu de la Vie de Conway, un automate cellulaire où les cellules sur une grille évoluent au fil du temps selon des règles simples. Le programme comprend des fonctionnalités avancées telles que l'enregistrement et le chargement des états du jeu, la détection de cycles dans le jeu et propose des modes de jeu manuels et automatiques.
+
+## Fonctionnalités
+- Dimensions de la grille interactives : Spécifiez la taille de la grille au début du jeu.
+- Enregistrer et charger le jeu : Reprenez une session précédente ou commencez une nouvelle partie.
+- Détection de cycles : Détecte et affiche lorsque le jeu entre dans un motif récurrent.
+- Mode manuel ou automatique :
+- Passez manuellement d'une génération à l'autre.
+- Regardez le jeu évoluer automatiquement.
+- Support multiplateforme : Fonctionne à la fois sur Windows et les systèmes Unix.
+- Affichage visuel : Utilise des symboles (⬜ pour les cellules vivantes et ⬛ pour les cellules mortes) pour afficher la grille.
+
+## Prise en main
+### Prérequis
+- Python 3.7 ou version ultérieure
+- Un terminal ou une ligne de commande pour exécuter le programme
+### Installation
+- Clonez ou téléchargez le repository sur votre machine locale.
+- Naviguez vers le dossier contenant les fichiers du programme.
+
+## Comment lancer le jeu
+1. Assurez-vous que tous les fichiers (main.py, game.py, generator_table.py, etc.) sont dans le même répertoire.
+2. Exécutez le programme en lançant la commande suivante dans votre terminal :
+    ```
+    python main.py
+    py main.py
+    python3 main.py 
+    ```
+
+## Comment jouer
+1. Démarrer le jeu :
+    - Lorsque vous y êtes invité, entrez la taille de la grille (par exemple, 5 pour une grille de 5x5).
+    - Choisissez de reprendre une partie précédente (0) ou de commencer une nouvelle partie (1).
+2. Commandes du jeu :
+    - La grille affichera les cellules vivantes (⬜) et mortes (⬛).
+    - Choisissez une action :
+        - [q] : Quitter le jeu.
+        - [a] : Passer en mode automatique.
+        - [c] : Passer à la génération suivante manuellement.
+        - Appuyez sur [Entrée] en mode automatique pour revenir au mode manuel.
+    - Détection des cycles :
+        - Si un motif récurrent est détecté, le programme vous informera de l'année du début du cycle.
+
+## Structure des fichiers
+- main.py : Point d'entrée du jeu.
+- game.py : Logique principale du jeu, y compris l'initialisation, la gestion de l'état du jeu et les interactions avec l'utilisateur.
+- generator_table.py : Génère la grille du jeu et place les cellules vivantes en fonction des entrées de l'utilisateur ou des données enregistrées.
+- update_table.py : Gère la mise à jour de la grille du jeu pour chaque génération.
+- print_table.py : Affiche la grille du jeu dans le terminal.
+- historic.py : Gère l'historique des états du jeu pour la détection des cycles.
+- detection_cycle.py : Implémente la logique de détection des motifs récurrents.
+- save_game.py : Fournit des fonctionnalités pour enregistrer et charger les états du jeu depuis/vers un fichier (save.txt).
+- key_controle.py : Gère les entrées utilisateur et le nettoyage du terminal pour les systèmes Windows et Unix.
+
+## Règles du jeu
+- Toute cellule vivante avec 2 ou 3 voisins survit.
+- Toute cellule morte avec exactement 3 voisins vivants devient vivante.
+- Toutes les autres cellules vivantes meurent à la génération suivante, et toutes les autres cellules mortes restent mortes.
+
+## Exemple de jeu
+Grille initiale :
+
+```
+
+⬛⬛⬛⬛⬛
+⬛⬜⬜⬜⬛
+⬛⬜⬛⬜⬛
+⬛⬜⬜⬛⬛
+⬛⬛⬛⬛⬛
+```
+Après une génération :
+
+```
+⬛⬛⬛⬛⬛
+⬛⬜⬛⬛⬛
+⬛⬜⬜⬛⬛
+⬛⬛⬛⬛⬛
+⬛⬛⬛⬛⬛
+```
+
+## Enregistrement et Chargement
+- La progression du jeu est automatiquement enregistrée dans le fichier save.txt.
+- La grille, l'historique et d'autres états du jeu peuvent être restaurés en sélectionnant 0 lors du démarrage du jeu.
+- La sauvegarde est stockée dans le fichier save.txt de la manière suivante :
+        - La sauvegarde est une liste de tables contenant des tuples représentant les positions des cellules vivantes (lignes, colonnes), le dernier tuple représentant la taille de la grille sauvegardée lorsqu'un nouveau jeu est créé (nombre de lignes, nombre de colonnes).
+        - Exemple :
+            ```
+            [[[1,1],[3,3]]] <- ce que nous voyons
+            [[[position de la cellule vivante, position de la cellule vivante],[nombre de lignes, nombre de colonnes]]] <- ce que c'est
+            ```
+
+## Dépendances
+Aucune dépendance externe n'est requise.
+
+Amusez-vous bien avec le Jeu de la Vie de Conway !
