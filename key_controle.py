@@ -2,7 +2,6 @@ import os
 import sys
 import select
 
-# Détecter le système d'exploitation pour choisir le module approprié
 if sys.platform == "win32":
     import msvcrt
 else:
