@@ -73,7 +73,7 @@ After One Generation:
 ```
 ⬛⬛⬛⬛⬛
 ⬛⬜⬛⬜⬛
-⬛⬜⬜⬜⬛
+⬛⬛⬛⬛⬛
 ⬛⬜⬛⬜⬛
 ⬛⬛⬛⬛⬛
 ```
@@ -156,23 +156,20 @@ Il s'agit d'une implémentation interactive du Jeu de la Vie de Conway, un autom
 - Toutes les autres cellules vivantes meurent à la génération suivante, et toutes les autres cellules mortes restent mortes.
 
 ## Exemple de jeu
-Grille initiale :
-
+Initial Grid:
 ```
-
 ⬛⬛⬛⬛⬛
 ⬛⬜⬜⬜⬛
 ⬛⬜⬛⬜⬛
-⬛⬜⬜⬛⬛
+⬛⬜⬜⬜⬛
 ⬛⬛⬛⬛⬛
 ```
-Après une génération :
-
+After One Generation:
 ```
 ⬛⬛⬛⬛⬛
-⬛⬜⬛⬛⬛
-⬛⬜⬜⬛⬛
+⬛⬜⬛⬜⬛
 ⬛⬛⬛⬛⬛
+⬛⬜⬛⬜⬛
 ⬛⬛⬛⬛⬛
 ```
 

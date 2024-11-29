@@ -9,7 +9,17 @@ import save_game
 import key_controle
 
 class Game:
+    """
+        Classe principale qui gère le déroulement du jeu.
+        Implemente l'initialisation, les interactions avec l'utilisateur,
+        la sauvegarde et la détection de cycles, ainsi que la logique de mise à jour.
+    """
     def __init__(self):
+        """
+            Initialisation du jeu :
+            - Configure la taille de la table selon l'entrée utilisateur.
+            - Initialise les modules nécessaires au fonctionnement.
+        """
         key_controle.Key_Controle.clear()
         while True:
             try:
@@ -32,6 +42,11 @@ class Game:
         self.automatic=False
 
     def start_game(self):
+        """
+            Lance le jeu et gère le cycle de vie de la partie.
+            - Permet de charger une partie existante ou d'en commencer une nouvelle.
+            - Gère les modes manuel et automatique.
+        """
         while True:
             try:
                 print("[0] continuer la partie d'avant\n[1] commencer une nouvelle partie")
@@ -106,6 +121,9 @@ class Game:
 
     
     def end_game(self):
+        """
+            Termine la partie en affichant un message.
+        """
         key_controle.Key_Controle.clear()
         print("la partie est terminée")
         time.sleep(2.5)
